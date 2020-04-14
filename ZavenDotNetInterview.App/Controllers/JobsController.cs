@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ZavenDotNetInterview.App.Models;
@@ -10,6 +11,7 @@ using ZavenDotNetInterview.App.Services;
 
 namespace ZavenDotNetInterview.App.Controllers
 {
+    [Route("[controller]/[action]")]
     public class JobsController : Controller
     {
         private readonly IJobProcessorService _jobProcessorService;
@@ -19,21 +21,21 @@ namespace ZavenDotNetInterview.App.Controllers
         }
 
         // GET: Tasks
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             using (ZavenDotNetInterviewContext _ctx = new ZavenDotNetInterviewContext())
             {
                 JobsRepository jobsRepository = new JobsRepository(_ctx);
-                List<Job> jobs = jobsRepository.GetAllJobs();
+                List<Job> jobs = await jobsRepository.GetAllJobs();
                 return View(jobs);
             }
         }
 
         // POST: Tasks/Process
         [HttpGet]
-        public ActionResult Process()
+        public async Task<ActionResult> Process()
         {
-            _jobProcessorService.ProcessJobs();
+            await _jobProcessorService.ProcessJobs();
 
             return RedirectToAction("Index");
         }
@@ -50,11 +52,11 @@ namespace ZavenDotNetInterview.App.Controllers
         {
             try
             {
-                using (ZavenDotNetInterviewContext _ctx = new ZavenDotNetInterviewContext())
+                using (var ctx = new ZavenDotNetInterviewContext())
                 {
-                    Job newJob = new Job() { Id = Guid.NewGuid(), DoAfter = doAfter, Name = name, Status = JobStatus.New };
-                    newJob = _ctx.Jobs.Add(newJob);
-                    _ctx.SaveChanges();
+                    var newJob = new Job() { Id = Guid.NewGuid(), DoAfter = doAfter, Name = name, Status = JobStatus.New };
+                    ctx.Jobs.Add(newJob);
+                    ctx.SaveChanges();
                 }
 
                 return RedirectToAction("Index");
@@ -65,9 +67,16 @@ namespace ZavenDotNetInterview.App.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult Details(Guid jobId)
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetDataItems()
+        {
+            return Json(await _jobProcessorService.GetJobs(), JsonRequestBehavior.AllowGet);
         }
     }
 }

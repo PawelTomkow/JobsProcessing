@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  sql.database.jobs:
+    container_name: sql.database.jobs
+    image: mcr.microsoft.com/mssql/server:2019-latest

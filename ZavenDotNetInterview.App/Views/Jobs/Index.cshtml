@@ -1,4 +1,6 @@
-﻿@model List<ZavenDotNetInterview.App.Models.Job>
+﻿@using ZavenDotNetInterview.App.Models
+
+@model List<Job>
 
 @{
     ViewBag.Title = "Index";
@@ -9,30 +11,6 @@
 @Html.ActionLink("Create", "Create")
 @Html.ActionLink("Process", "Process")
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Name")
-        </th>
-        <th>
-            @Html.DisplayName("Status")
-        </th>
-        <th></th>
-    </tr>
+<table id="jobs_table"></table>
 
-    @foreach (var job in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => job.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => job.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { jobId = job.Id })
-            </td>
-        </tr>
-    }
-
-</table>
+<script src="../../Content/js/site/jobs/table-director.js"></script>

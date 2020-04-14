@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,9 +18,9 @@ namespace ZavenDotNetInterview.App.Repositories
             _ctx = ctx;
         }
 
-        public List<Job> GetAllJobs()
+        public async Task<List<Job>> GetAllJobs()
         {
-            return _ctx.Jobs.ToList();
+            return await _ctx.Jobs.ToListAsync();
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ZavenDotNetInterview.App.Models;
 
 namespace ZavenDotNetInterview.App.Repositories
 {
     public interface IJobsRepository
     {
-        List<Job> GetAllJobs();
+         Task<List<Job>> GetAllJobs();
     }
 }

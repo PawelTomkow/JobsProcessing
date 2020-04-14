@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  sql.database.jobs:
+    environment:
+      - "SA_PASSWORD=Pass@word"
+      - "ACCEPT_EULA=Y"
+    ports:
+      - "15433:1433" # Important: In a production environment your should remove the external port
+    volumes:
+      - ./db:/var/opt/mssql/data
+
+volumes:
+  sql.database.jobs.volume:
+
+networks:
+  default:
+    name: jobs_network
+    driver: bridge

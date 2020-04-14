@@ -13,16 +13,18 @@ namespace ZavenDotNetInterview.App.Services
     public class JobProcessorService : IJobProcessorService
     {
         private ZavenDotNetInterviewContext _ctx;
+        private IJobsRepository _jobsRepository;
 
         public JobProcessorService(ZavenDotNetInterviewContext ctx)
         {
             _ctx = ctx;
+            _jobsRepository = new JobsRepository(_ctx);
         }
 
-        public void ProcessJobs()
+        public async Task ProcessJobs()
         {
-            IJobsRepository jobsRepository = new JobsRepository(_ctx);
-            var allJobs = jobsRepository.GetAllJobs();
+            ;
+            var allJobs = await _jobsRepository.GetAllJobs();
             var jobsToProcess = allJobs.Where(x => x.Status == JobStatus.New).ToList();
 
             jobsToProcess.ForEach(job => job.ChangeStatus(JobStatus.InProgress));
@@ -33,7 +35,7 @@ namespace ZavenDotNetInterview.App.Services
             {
                 new Task(async () =>
                 {
-                    bool result = await this.ProcessJob(currentjob).ConfigureAwait(false);
+                    var result = await this.ProcessJob(currentjob).ConfigureAwait(false);
                     if (result)
                     {
                         currentjob.ChangeStatus(JobStatus.Done);
@@ -62,6 +64,11 @@ namespace ZavenDotNetInterview.App.Services
                 await Task.Delay(1000);
                 return true;
             }
+        }
+
+        public async Task<List<Job>> GetJobs()
+        {
+            return await _jobsRepository.GetAllJobs();
         }
     }
 }
