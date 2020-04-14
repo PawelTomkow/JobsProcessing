@@ -141,6 +141,7 @@
     <Content Include="Content\js\modernize\modernizr-2.8.3.js" />
     <Content Include="Content\js\site\jobs\table-director.js" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs\Details.cshtml" />
@@ -172,6 +173,9 @@
     <Compile Include="Repositories\JobsRepository.cs" />
     <Compile Include="Services\IJobProcessorService.cs" />
     <Compile Include="Services\JobProcessorService.cs" />
+    <Compile Include="ViewModels\Jobs\CreateViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

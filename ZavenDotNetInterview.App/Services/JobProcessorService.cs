@@ -70,5 +70,11 @@ namespace ZavenDotNetInterview.App.Services
         {
             return await _jobsRepository.GetAllJobs();
         }
+
+        public async Task<bool> DoesNameExist(string name)
+        {
+            var result = await _jobsRepository.GetJob(name);
+            return string.IsNullOrWhiteSpace(result.Name);
+        }
     }
 }

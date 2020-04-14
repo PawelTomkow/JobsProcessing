@@ -8,5 +8,6 @@ namespace ZavenDotNetInterview.App.Services
     {
         Task ProcessJobs();
         Task<List<Job>> GetJobs();
+        Task<bool> DoesNameExist(string name);
     }
 }

@@ -22,5 +22,15 @@ namespace ZavenDotNetInterview.App.Repositories
         {
             return await _ctx.Jobs.ToListAsync();
         }
+
+        public async Task<Job> GetJob(string name)
+        {
+            var result = await _ctx.Jobs.Where(x => x.Name.Equals(name)).FirstOrDefaultAsync();
+            
+            return result ?? new Job()
+            {
+                Name = string.Empty
+            };
+        }
     }
 }

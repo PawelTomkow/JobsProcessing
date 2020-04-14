@@ -7,5 +7,6 @@ namespace ZavenDotNetInterview.App.Repositories
     public interface IJobsRepository
     {
          Task<List<Job>> GetAllJobs();
+         Task<Job> GetJob(string name);
     }
 }

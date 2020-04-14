@@ -48,8 +48,13 @@ namespace ZavenDotNetInterview.App.Controllers
 
         // POST: Tasks/Create
         [HttpPost]
-        public ActionResult Create(string name, DateTime doAfter)
+        public async Task<ActionResult> Create(string name, DateTime doAfter)
         {
+            if (!ModelState.IsValid && await _jobProcessorService.DoesNameExist(name))
+            {
+                return View("Error");
+            }
+
             try
             {
                 using (var ctx = new ZavenDotNetInterviewContext())
