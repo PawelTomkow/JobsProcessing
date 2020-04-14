@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
+using ZavenDotNetInterview.Core.Models;
 
-namespace ZavenDotNetInterview.App.Models.Context
+namespace ZavenDotNetInterview.Persistence.Context
 {
     public class ZavenDotNetInterviewContext : DbContext
     {

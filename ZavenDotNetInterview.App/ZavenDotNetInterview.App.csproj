@@ -151,28 +151,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\JobsController.cs" />
-    <Compile Include="Extensions\JobExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002031816477_Init.cs" />
-    <Compile Include="Migrations\202002031816477_Init.designer.cs">
-      <DependentUpon>202002031816477_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002050841207_ChangeJobStateName.cs" />
-    <Compile Include="Migrations\202002050841207_ChangeJobStateName.designer.cs">
-      <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
-    <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IJobsRepository.cs" />
-    <Compile Include="Repositories\LogsRepository.cs" />
-    <Compile Include="Repositories\JobsRepository.cs" />
-    <Compile Include="Services\IJobProcessorService.cs" />
-    <Compile Include="Services\JobProcessorService.cs" />
     <Compile Include="ViewModels\Jobs\CreateViewModel.cs" />
     <Compile Include="ViewModels\Jobs\DetailsViewModel.cs" />
     <Compile Include="ViewModels\Jobs\IndexViewModel.cs" />
@@ -192,15 +174,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002031816477_Init.resx">
-      <DependentUpon>202002031816477_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002050841207_ChangeJobStateName.resx">
-      <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\ZavenDotNetInterview.Core\ZavenDotNetInterview.Core.csproj">
+      <Project>{10dc423f-84d7-4611-ab66-209a3999cf81}</Project>
+      <Name>ZavenDotNetInterview.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZavenDotNetInterview.Infrastructure\ZavenDotNetInterview.Infrastructure.csproj">
+      <Project>{943712c1-29c9-4d54-8a1f-b36800dc7bf4}</Project>
+      <Name>ZavenDotNetInterview.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZavenDotNetInterview.Persistence\ZavenDotNetInterview.Persistence.csproj">
+      <Project>{2b531889-0c37-4859-b087-f36cab03180b}</Project>
+      <Name>ZavenDotNetInterview.Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

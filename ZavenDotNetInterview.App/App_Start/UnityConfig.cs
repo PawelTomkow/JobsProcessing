@@ -2,9 +2,13 @@ using System;
 
 using Unity;
 using Unity.Lifetime;
-using ZavenDotNetInterview.App.Models.Context;
-using ZavenDotNetInterview.App.Repositories;
-using ZavenDotNetInterview.App.Services;
+using ZavenDotNetInterview.Core.Models;
+using ZavenDotNetInterview.Core.Repositories;
+using ZavenDotNetInterview.Infrastructure.Repositories;
+using ZavenDotNetInterview.Infrastructure.Services;
+using ZavenDotNetInterview.Infrastructure.Services.Interfaces;
+using ZavenDotNetInterview.Persistence.Context;
+using ZavenDotNetInterview.Persistence.Extensions;
 
 namespace ZavenDotNetInterview.App
 {
@@ -45,9 +49,18 @@ namespace ZavenDotNetInterview.App
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IJobsRepository, JobsRepository>(new ContainerControlledLifetimeManager());
-            container.RegisterInstance<ZavenDotNetInterviewContext>(new ZavenDotNetInterviewContext(), InstanceLifetime.Singleton);
-            container.RegisterType<IJobProcessorService, JobProcessorService>();
+            
+            //Singletons
+            container.RegisterConfig();
+            container.RegisterSingleton<ZavenDotNetInterviewContext>();
+            
+            //Repos
+            container.RegisterType<IJobsRepository, JobsRepository>(new PerResolveLifetimeManager ());
+            container.RegisterType<ILogsRepository, LogsRepository>(new PerResolveLifetimeManager ());
+
+            //Services
+            container.RegisterType<IJobProcessorService, JobProcessorService>(new PerResolveLifetimeManager ());
+            
         }
     }
 }

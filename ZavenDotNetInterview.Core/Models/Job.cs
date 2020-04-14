@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ZavenDotNetInterview.App.Models
+namespace ZavenDotNetInterview.Core.Models
 {
     public class Job
     {

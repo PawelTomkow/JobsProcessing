@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ZavenDotNetInterview.App.Models
+namespace ZavenDotNetInterview.Core.Models
 {
     public class Log
     {

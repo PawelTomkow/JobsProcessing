@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ZavenDotNetInterview.Core.Models;
+
+namespace ZavenDotNetInterview.Core.Repositories
+{
+    public interface IJobsRepository
+    {
+         Task<List<Job>> GetAllJobs();
+         Task<Job> GetJob(string name);
+         Task<Job> GetJob(Guid id);
+         Task<List<Job>> GetStopedAndNotStartedJobs();
+         Task UpdateJob(Job job);
+    }
+}

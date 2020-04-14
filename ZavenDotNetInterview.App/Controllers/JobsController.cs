@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using ZavenDotNetInterview.App.Models;
-using ZavenDotNetInterview.App.Models.Context;
-using ZavenDotNetInterview.App.Repositories;
-using ZavenDotNetInterview.App.Services;
+using ZavenDotNetInterview.Core.Models;
+using ZavenDotNetInterview.Infrastructure.Repositories;
+using ZavenDotNetInterview.Infrastructure.Services.Interfaces;
+using ZavenDotNetInterview.Persistence.Context;
 
 namespace ZavenDotNetInterview.App.Controllers
 {
@@ -15,6 +13,7 @@ namespace ZavenDotNetInterview.App.Controllers
     public class JobsController : Controller
     {
         private readonly IJobProcessorService _jobProcessorService;
+
         public JobsController(IJobProcessorService jobProcessorService)
         {
             _jobProcessorService = jobProcessorService;

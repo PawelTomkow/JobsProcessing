@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ZavenDotNetInterview.App.Models;
+using ZavenDotNetInterview.Core.Models;
 
-namespace ZavenDotNetInterview.App.Services
+namespace ZavenDotNetInterview.Infrastructure.Services.Interfaces
 {
     public interface IJobProcessorService
     {
