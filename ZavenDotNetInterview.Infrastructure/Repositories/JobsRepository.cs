@@ -56,6 +56,7 @@ namespace ZavenDotNetInterview.Infrastructure.Repositories
             if (ctxJob != null)
             {
                 ctxJob.Status = job.Status;
+                ctxJob.LastUpdatedAt = DateTime.Now;
                 await _ctx.SaveChangesAsync();
             }
         }
