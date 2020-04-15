@@ -12,14 +12,7 @@ namespace ZavenDotNetInterview.Core.Models
         public DateTime? DoAfter { get; set; }
         public DateTime? LastUpdatedAt { get; set; }
         public DateTime CreationTime { get; set; }
+        public int TryCounter { get; set; }
         public virtual List<Log> Logs { get; set; }
-    }
-
-    public enum JobStatus
-    {
-        Failed = -1,
-        New = 0,
-        InProgress = 1,
-        Done = 2
     }
 }

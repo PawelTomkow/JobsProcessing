@@ -57,21 +57,9 @@ namespace ZavenDotNetInterview.App.Controllers
                 return View("Error");
             }
 
-            try
-            {
-                using (var ctx = new ZavenDotNetInterviewContext())
-                {
-                    var newJob = new Job() { Id = Guid.NewGuid(), DoAfter = doAfter, Name = name, Status = JobStatus.New };
-                    ctx.Jobs.Add(newJob);
-                    ctx.SaveChanges();
-                }
+            await _jobService.AddJob(doAfter, name);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

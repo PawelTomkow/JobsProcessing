@@ -55,10 +55,18 @@ namespace ZavenDotNetInterview.Infrastructure.Repositories
             var ctxJob = await _ctx.Jobs.FindAsync(job.Id);
             if (ctxJob != null)
             {
+                ctxJob.Name = job.Name;
+                ctxJob.TryCounter = job.TryCounter;
                 ctxJob.Status = job.Status;
                 ctxJob.LastUpdatedAt = DateTime.Now;
                 await _ctx.SaveChangesAsync();
             }
+        }
+
+        public async Task Add(Job job)
+        {
+            _ctx.Jobs.Add(job);
+            await _ctx.SaveChangesAsync();
         }
     }
 }

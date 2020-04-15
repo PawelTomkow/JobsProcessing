@@ -11,5 +11,6 @@ namespace ZavenDotNetInterview.Infrastructure.Services.Interfaces
         Task<List<JobDto>> GetAllJobs(bool orderByCreateDateAsc = false);
         Task<bool> DoesNameExist(string name);
         Task<Job> GetJob(Guid id);
+        Task AddJob(DateTime doAfter, string name);
     }
 }

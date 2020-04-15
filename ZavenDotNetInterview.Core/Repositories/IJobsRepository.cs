@@ -13,5 +13,6 @@ namespace ZavenDotNetInterview.Core.Repositories
          Task<Job> GetJob(Guid id);
          Task<List<Job>> GetStopedAndNotStartedJobs();
          Task UpdateJob(Job job);
+         Task Add(Job job);
     }
 }

@@ -42,5 +42,20 @@ namespace ZavenDotNetInterview.Infrastructure.Services
         {
             return await _repository.GetJob(id);
         }
+
+        public async Task AddJob(DateTime doAfter, string name)
+        {
+            var job = new Job
+            {
+                Id = Guid.NewGuid(),
+                Status = JobStatus.New,
+                CreationTime = DateTime.Now,
+                TryCounter = 0,
+                DoAfter = doAfter,
+                Name = name
+            };
+
+            await _repository.Add(job);
+        }
     }
 }

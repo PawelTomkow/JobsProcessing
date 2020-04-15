@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202004151439102_addLastUpdatedAt.designer.cs">
       <DependentUpon>202004151439102_addLastUpdatedAt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004151854500_addCreationTimeAddCounterFailed.cs" />
+    <Compile Include="Migrations\202004151854500_addCreationTimeAddCounterFailed.designer.cs">
+      <DependentUpon>202004151854500_addCreationTimeAddCounterFailed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004151439102_addLastUpdatedAt.resx">
       <DependentUpon>202004151439102_addLastUpdatedAt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004151854500_addCreationTimeAddCounterFailed.resx">
+      <DependentUpon>202004151854500_addCreationTimeAddCounterFailed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
