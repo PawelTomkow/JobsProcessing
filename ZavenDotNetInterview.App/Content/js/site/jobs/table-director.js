@@ -45,9 +45,9 @@
     function generateHeaders() {
         $(table_id).append(
             $('<tr>').append(
-                $('<td>').text("Name"),
-                $('<td>').text("Status"),
-                $('<td>').text("Details")
+                $('<th>').text("Name"),
+                $('<th>').text("Status"),
+                $('<th>').text("Details")
         ));
     }
     

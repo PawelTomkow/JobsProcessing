@@ -7,75 +7,79 @@
 
 <h2>Details</h2>
 
-<table>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("DoAfter")
+            </th>
+            <th>
+                @Html.DisplayName("LastUpdatedAt")
+            </th>
+        </tr>
+    </thead>
     <tr>
-        <th>
-            @Html.DisplayName("Id")
-        </th>
-        <th>
-            @Html.DisplayName("Name")
-        </th>
-        <th>
-            @Html.DisplayName("Status")
-        </th>
-        <th>
-            @Html.DisplayName("DoAfter")
-        </th>
-        <th>
-            @Html.DisplayName("LastUpdatedAt")
-        </th>
-    </tr>
-    <tr>
-        <th>
+        <td>
             @Html.DisplayFor(model => model.Job.Id)
-        </th>
-        <th>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Job.Name)
-        </th>
-        <th>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Job.Status)
-        </th>
-        <th>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Job.DoAfter)
-        </th>
-        <th>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Job.LastUpdatedAt)
-        </th>
+        </td>
     </tr>
 </table>
 
 <h2>Logs</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Id")
-        </th>
-        <th>
-            @Html.DisplayName("JobId")
-        </th>
-        <th>
-            @Html.DisplayName("Description")
-        </th>
-        <th>
-            @Html.DisplayName("CreatedAt")
-        </th>
-    </tr>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("JobId")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("CreatedAt")
+            </th>
+        </tr>
+    </thead>
     @foreach (var log in Model.Logs)
     {
         <tr>
-            <th>
+            <td>
                 @Html.DisplayFor(model => log.Id)
-            </th>
-            <th>
+            </td>
+            <td>
                 @Html.DisplayFor(model => log.JobId)
-            </th>
-            <th>
+            </td>
+            <td>
                 @Html.DisplayFor(model => log.Description)
-            </th>
-            <th>
+            </td>
+            <td>
                 @Html.DisplayFor(model => log.CreatedAt)
-            </th>
+            </td>
         </tr>
     }
 </table>

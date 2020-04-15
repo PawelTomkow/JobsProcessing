@@ -38,9 +38,10 @@ namespace ZavenDotNetInterview.Infrastructure.Services
             return string.IsNullOrWhiteSpace(result.Name);
         }
 
-        public async Task<Job> GetJob(Guid id)
+        public async Task<JobDto> GetJob(Guid id)
         {
-            return await _repository.GetJob(id);
+            var result = await _repository.GetJob(id);
+            return _mapper.Map<JobDto>(result);
         }
 
         public async Task AddJob(DateTime doAfter, string name)
