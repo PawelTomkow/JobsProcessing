@@ -64,9 +64,9 @@
     <Compile Include="Config\DatabaseConfig.cs" />
     <Compile Include="Context\ZavenDotNetInterviewContext.cs" />
     <Compile Include="Extensions\ConfigurationExtension.cs" />
-    <Compile Include="Migrations\202004142118082_init.cs" />
-    <Compile Include="Migrations\202004142118082_init.designer.cs">
-      <DependentUpon>202004142118082_init.cs</DependentUpon>
+    <Compile Include="Migrations\202004151433004_init.cs" />
+    <Compile Include="Migrations\202004151433004_init.designer.cs">
+      <DependentUpon>202004151433004_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,8 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004142118082_init.resx">
-      <DependentUpon>202004142118082_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004151433004_init.resx">
+      <DependentUpon>202004151433004_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
