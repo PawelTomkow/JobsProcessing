@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ZavenDotNetInterview.Core.Models;
@@ -20,10 +22,14 @@ namespace ZavenDotNetInterview.Infrastructure.Services
             _mapper = mapper;
         }
         
-        public async Task<List<JobDto>> GetJobs()
+        public async Task<List<JobDto>> GetAllJobs(bool orderByCreateDateAsc = false)
         {
-            var result =  await _repository.GetAllJobs();
-            return _mapper.Map<List<JobDto>>(result);
+            var result =  _repository.GetAllJobs();
+            if (orderByCreateDateAsc)
+            {
+                result = result.OrderBy(job => job.CreationTime);
+            }
+            return _mapper.Map<List<JobDto>>(await result.ToListAsync());
         }
 
         public async Task<bool> DoesNameExist(string name)

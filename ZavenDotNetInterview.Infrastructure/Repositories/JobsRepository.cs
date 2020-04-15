@@ -18,9 +18,9 @@ namespace ZavenDotNetInterview.Infrastructure.Repositories
             _ctx = ctx;
         }
 
-        public async Task<List<Job>> GetAllJobs()
+        public IQueryable<Job> GetAllJobs()
         {
-            return await _ctx.Jobs.ToListAsync();
+            return _ctx.Jobs.AsQueryable();
         }
 
         public async Task<Job> GetJob(Guid id)

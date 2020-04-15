@@ -29,12 +29,8 @@ namespace ZavenDotNetInterview.App.Controllers
         // GET: Tasks
         public async Task<ActionResult> Index()
         {
-            using (ZavenDotNetInterviewContext _ctx = new ZavenDotNetInterviewContext())
-            {
-                JobsRepository jobsRepository = new JobsRepository(_ctx);
-                List<Job> jobs = await jobsRepository.GetAllJobs();
-                return View(jobs);
-            }
+            var jobs = await _jobService.GetAllJobs();
+            return View(jobs);
         }
 
         // POST: Tasks/Process
@@ -93,7 +89,7 @@ namespace ZavenDotNetInterview.App.Controllers
         [HttpGet]
         public async Task<ActionResult> GetDataItems()
         {
-            return Json(await _jobService.GetJobs(), JsonRequestBehavior.AllowGet);
+            return Json(await _jobService.GetAllJobs(), JsonRequestBehavior.AllowGet);
         }
     }
 }

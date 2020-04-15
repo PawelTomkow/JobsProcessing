@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ZavenDotNetInterview.Core.Models
 {
@@ -10,6 +11,7 @@ namespace ZavenDotNetInterview.Core.Models
         public JobStatus Status { get; set; }
         public DateTime? DoAfter { get; set; }
         public DateTime? LastUpdatedAt { get; set; }
+        public DateTime CreationTime { get; set; }
         public virtual List<Log> Logs { get; set; }
     }
 
