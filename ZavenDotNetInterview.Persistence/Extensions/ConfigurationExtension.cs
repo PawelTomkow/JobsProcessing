@@ -10,7 +10,7 @@ namespace ZavenDotNetInterview.Persistence.Extensions
         public static void RegisterConfig(this IUnityContainer unityContainer)
         {
             unityContainer.RegisterInstance(
-                new DatabaseConfig(ConfigurationManager.ConnectionStrings["entityFramework"].ConnectionString), 
+                new DatabaseConfig(ConfigurationManager.ConnectionStrings["ZavenDotNetInterview"].ConnectionString), 
                 new SingletonLifetimeManager());
         }
     }

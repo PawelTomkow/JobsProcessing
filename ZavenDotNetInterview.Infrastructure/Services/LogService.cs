@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ZavenDotNetInterview.Core.Models;
 using ZavenDotNetInterview.Core.Repositories;
@@ -6,27 +8,37 @@ using ZavenDotNetInterview.Infrastructure.Services.Interfaces;
 
 namespace ZavenDotNetInterview.Infrastructure.Services
 {
-    public class Logger : ILogger
+    public class LogService : ILogService
     {
-        private readonly ILogsRepository _context;
+        private readonly ILogsRepository _repository;
 
-        public Logger(ILogsRepository context)
+        public LogService(ILogsRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         
         public async Task LogUpdateStatus(Job job)
         {
             var log = GenerateUpdateStatus(job);
-            await _context.Add(log);
+            await _repository.Add(log);
         }
 
         public async Task LogAddJob(Job job)
         {
             var log = GenerateNewJob(job);
-            await _context.Add(log);
+            await _repository.Add(log);
+        }
+
+        public async Task<List<Log>> GetLogsJob(Guid jobId)
+        {
+            return await _repository.GetJobLogs(jobId);
         }
         
+        public async Task<List<Log>> GetLogsJobDescending(Guid jobId)
+        {
+            return (await _repository.GetJobLogs(jobId)).OrderByDescending(job => job.CreatedAt).ToList();
+        }
+
         private static Log GenerateUpdateStatus(Job job) => new Log
         {
             Id = Guid.NewGuid(),

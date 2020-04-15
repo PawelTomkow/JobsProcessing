@@ -7,7 +7,5 @@ namespace ZavenDotNetInterview.Infrastructure.Services.Interfaces
     public interface IJobProcessorService
     {
         Task ProcessJobs();
-        Task<List<Job>> GetJobs();
-        Task<bool> DoesNameExist(string name);
     }
 }

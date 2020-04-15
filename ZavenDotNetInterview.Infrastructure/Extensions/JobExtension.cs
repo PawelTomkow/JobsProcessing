@@ -6,10 +6,10 @@ namespace ZavenDotNetInterview.Infrastructure.Extensions
 {
     internal static class JobExtension
     {
-        public static async Task ChangeStatus(this Job job, JobStatus newStatus, ILogger logger)
+        public static async Task ChangeStatus(this Job job, JobStatus newStatus, ILogService logService)
         {
             job.Status = newStatus;
-            await logger.LogUpdateStatus(job);
+            await logService.LogUpdateStatus(job);
         }
     }
 }

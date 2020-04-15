@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ZavenDotNetInterview.App.ViewModels.Jobs;
 using ZavenDotNetInterview.Core.Models;
 using ZavenDotNetInterview.Infrastructure.Repositories;
 using ZavenDotNetInterview.Infrastructure.Services.Interfaces;
@@ -13,10 +14,16 @@ namespace ZavenDotNetInterview.App.Controllers
     public class JobsController : Controller
     {
         private readonly IJobProcessorService _jobProcessorService;
+        private readonly IJobService _jobService;
+        private readonly ILogService _logService;
 
-        public JobsController(IJobProcessorService jobProcessorService)
+        public JobsController(IJobProcessorService jobProcessorService, 
+            IJobService jobService, 
+            ILogService logService)
         {
             _jobProcessorService = jobProcessorService;
+            _jobService = jobService;
+            _logService = logService;
         }
 
         // GET: Tasks
@@ -49,7 +56,7 @@ namespace ZavenDotNetInterview.App.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(string name, DateTime doAfter)
         {
-            if (!ModelState.IsValid && await _jobProcessorService.DoesNameExist(name))
+            if (!ModelState.IsValid && await _jobService.DoesNameExist(name))
             {
                 return View("Error");
             }
@@ -72,15 +79,21 @@ namespace ZavenDotNetInterview.App.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(Guid jobId)
+        public async Task<ActionResult> Details(Guid jobId)
         {
-            return View();
+            var response = new DetailsViewModel()
+            {
+                Job = await _jobService.GetJob(jobId),
+                Logs = await _logService.GetLogsJobDescending(jobId)
+            };
+
+            return View(response);
         }
 
         [HttpGet]
         public async Task<ActionResult> GetDataItems()
         {
-            return Json(await _jobProcessorService.GetJobs(), JsonRequestBehavior.AllowGet);
+            return Json(await _jobService.GetJobs(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,9 +1,10 @@
 using System;
-
+using AutoMapper;
 using Unity;
 using Unity.Lifetime;
 using ZavenDotNetInterview.Core.Models;
 using ZavenDotNetInterview.Core.Repositories;
+using ZavenDotNetInterview.Infrastructure.Config;
 using ZavenDotNetInterview.Infrastructure.Repositories;
 using ZavenDotNetInterview.Infrastructure.Services;
 using ZavenDotNetInterview.Infrastructure.Services.Interfaces;
@@ -49,9 +50,10 @@ namespace ZavenDotNetInterview.App
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            
+
             //Singletons
             container.RegisterConfig();
+            container.RegisterInstance(AutoMapperConfiguration.GetMapper());
             container.RegisterSingleton<ZavenDotNetInterviewContext>();
             
             //Repos
@@ -59,6 +61,8 @@ namespace ZavenDotNetInterview.App
             container.RegisterType<ILogsRepository, LogsRepository>(new PerResolveLifetimeManager ());
 
             //Services
+            container.RegisterType<IJobService, JobService>(new PerResolveLifetimeManager ());
+            container.RegisterType<ILogService, LogService>(new PerResolveLifetimeManager ());
             container.RegisterType<IJobProcessorService, JobProcessorService>(new PerResolveLifetimeManager ());
             
         }

@@ -22,7 +22,9 @@ namespace ZavenDotNetInterview.Infrastructure.Repositories
 
         public async Task<List<Log>> GetJobLogs(Guid jobId)
         {
-            return (await _db.QueryAsync<Log>($"SELECT * FROM Logs WHERE JobId = {jobId}")).ToList();
+            const string sql = "SELECT * FROM Logs WHERE JobId = @id";
+            
+            return (await _db.QueryAsync<Log>(sql, new {id = jobId})).ToList();
         }
 
         public async Task Add(Log log)

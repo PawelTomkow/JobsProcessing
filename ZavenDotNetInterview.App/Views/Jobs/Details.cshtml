@@ -1,7 +1,82 @@
-﻿@*TODO: Use Razor Syntax*@
+﻿@using ZavenDotNetInterview.App.ViewModels.Jobs
+
+@model DetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DoAfter")
+        </th>
+        <th>
+            @Html.DisplayName("LastUpdatedAt")
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayFor(model => model.Job.Id)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.Job.Name)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.Job.Status)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.Job.DoAfter)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.Job.LastUpdatedAt)
+        </th>
+    </tr>
+</table>
+
+<h2>Logs</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("JobId")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("CreatedAt")
+        </th>
+    </tr>
+    @foreach (var log in Model.Logs)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(model => log.Id)
+            </th>
+            <th>
+                @Html.DisplayFor(model => log.JobId)
+            </th>
+            <th>
+                @Html.DisplayFor(model => log.Description)
+            </th>
+            <th>
+                @Html.DisplayFor(model => log.CreatedAt)
+            </th>
+        </tr>
+    }
+</table>
 
