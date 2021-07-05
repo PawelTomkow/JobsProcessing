@@ -1,7 +1,86 @@
-﻿@*TODO: Use Razor Syntax*@
+﻿@using ZavenDotNetInterview.App.ViewModels.Jobs
+
+@model DetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("DoAfter")
+            </th>
+            <th>
+                @Html.DisplayName("LastUpdatedAt")
+            </th>
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Job.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Job.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Job.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Job.DoAfter)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Job.LastUpdatedAt)
+        </td>
+    </tr>
+</table>
+
+<h2>Logs</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("JobId")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("CreatedAt")
+            </th>
+        </tr>
+    </thead>
+    @foreach (var log in Model.Logs)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => log.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => log.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => log.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => log.CreatedAt)
+            </td>
+        </tr>
+    }
+</table>
 

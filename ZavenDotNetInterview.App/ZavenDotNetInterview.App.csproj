@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -116,21 +120,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\js\bootstrap\bootstrap.js" />
+    <Content Include="Content\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.js" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.min.js" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.min.map" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.slim.js" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.slim.min.js" />
+    <Content Include="Content\js\jQuery\jquery-3.4.1.slim.min.map" />
+    <Content Include="Content\js\modernize\modernizr-2.8.3.js" />
+    <Content Include="Content\js\site\jobs\table-director.js" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs\Details.cshtml" />
@@ -140,45 +155,21 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\JobsController.cs" />
-    <Compile Include="Extensions\JobExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002031816477_Init.cs" />
-    <Compile Include="Migrations\202002031816477_Init.designer.cs">
-      <DependentUpon>202002031816477_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002050841207_ChangeJobStateName.cs" />
-    <Compile Include="Migrations\202002050841207_ChangeJobStateName.designer.cs">
-      <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
-    <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IJobsRepository.cs" />
-    <Compile Include="Repositories\LogsRepository.cs" />
-    <Compile Include="Repositories\JobsRepository.cs" />
-    <Compile Include="Services\IJobProcessorService.cs" />
-    <Compile Include="Services\JobProcessorService.cs" />
+    <Compile Include="ViewModels\Jobs\CreateViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Content\js\jQuery\jquery-3.4.1.intellisense.js" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Jobs\Create.cshtml" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,15 +178,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002031816477_Init.resx">
-      <DependentUpon>202002031816477_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002050841207_ChangeJobStateName.resx">
-      <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\ZavenDotNetInterview.Core\ZavenDotNetInterview.Core.csproj">
+      <Project>{10dc423f-84d7-4611-ab66-209a3999cf81}</Project>
+      <Name>ZavenDotNetInterview.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZavenDotNetInterview.Infrastructure\ZavenDotNetInterview.Infrastructure.csproj">
+      <Project>{943712c1-29c9-4d54-8a1f-b36800dc7bf4}</Project>
+      <Name>ZavenDotNetInterview.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZavenDotNetInterview.Persistence\ZavenDotNetInterview.Persistence.csproj">
+      <Project>{2b531889-0c37-4859-b087-f36cab03180b}</Project>
+      <Name>ZavenDotNetInterview.Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

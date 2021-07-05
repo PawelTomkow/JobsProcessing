@@ -1,12 +1,20 @@
-﻿@*TODO: Use Razor Syntax*@
+﻿@using ZavenDotNetInterview.App.ViewModels.Jobs
+@model CreateViewModel
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-<form action="/Jobs/Create" method="post">
-    Name: <input type="text" name="Name" placeholder="Name" />
-    Do after: <input type="datetime" name="DoAfter" placeholder="RRRR-MM-DD" />
-    <input type="submit" value="Add Task" />
-</form>
+@using (Html.BeginForm("Create", "Jobs", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    
+    @Html.LabelFor(model => model.DoAfter)
+    @Html.TextBoxFor(model => model.DoAfter, new {type = "date"})
+    
+    <input type="submit" value="Create"/>
+}
